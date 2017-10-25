@@ -1,12 +1,16 @@
 import boto3
 from . import TestTask
+from os import environ
+
+TASK_QUEUE_RECV_ENV_NAME = "TASK_QUEUE_RECV"
+TASK_QUEUE_SEND_ENV_NAME = "TASK_QUEUE_SEND"
 
 
 class QueManager:
     def __init__(self):
         self.sqs = boto3.client('sqs')
-        self.task_queue_url = 'https://sqs.eu-central-1.amazonaws.com/838105386995/TestTasks'
-        self.result_queue_url = 'https://sqs.eu-central-1.amazonaws.com/838105386995/TestResults'
+        self.task_queue_url = environ[TASK_QUEUE_RECV_ENV_NAME]  # https://sqs.eu-central-1.amazonaws.com/838105386995/TestTasks
+        self.result_queue_url = environ[TASK_QUEUE_SEND_ENV_NAME]  # 'https://sqs.eu-central-1.amazonaws.com/838105386995/TestResults'
 
     def get_task(self):
         response = self.sqs.receive_message(
