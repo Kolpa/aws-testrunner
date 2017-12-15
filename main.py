@@ -7,7 +7,7 @@ import json
 checks = 0
 queue = QueManager()
 
-while checks < 10:
+while checks < 120:
     print("Checking Tasks")
     task = queue.get_task()
     if task:
@@ -19,5 +19,5 @@ while checks < 10:
 
     sleep(5)
 
-print("no new tasks for 50 seconds terminating instance...")
+print("no new tasks for 10 minutes terminating instance...")
 os.system("poweroff")
