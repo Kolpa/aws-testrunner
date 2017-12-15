@@ -11,7 +11,7 @@ while checks < 10:
     if task:
         checks = 0
         result = task.run()
-        queue.send_result(result.getvalue(), task.testid)
+        queue.send_result(result, task.testid)
     else:
         checks += 1
 

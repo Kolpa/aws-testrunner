@@ -1,8 +1,11 @@
 import types
 import unittest
 import io
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+
+from task import JsonTestRunner
 
 
 class TestTask:
@@ -22,5 +25,4 @@ class TestTask:
         self.test_result = io.StringIO()
 
     def run(self):
-        unittest.TextTestRunner(verbosity=2, stream=self.test_result).run(self.test_suite)
-        return self.test_result
+        return JsonTestRunner().run(self.test_suite)
