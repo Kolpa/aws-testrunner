@@ -1,6 +1,8 @@
 from task import QueManager
 from time import sleep
 import os
+import json
+
 
 checks = 0
 queue = QueManager()
@@ -11,7 +13,7 @@ while checks < 10:
     if task:
         checks = 0
         result = task.run()
-        queue.send_result(result, task.testid)
+        queue.send_result(json.dumps(result), task.testid)
     else:
         checks += 1
 
