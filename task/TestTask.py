@@ -5,7 +5,7 @@ import io
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-from task import JsonTestRunner
+from . import JsonTestRunner
 
 
 class TestTask:
@@ -25,4 +25,4 @@ class TestTask:
         self.test_result = io.StringIO()
 
     def run(self):
-        return JsonTestRunner().run(self.test_suite)
+        return JsonTestRunner.JsonTestRunner().run(self.test_suite)
